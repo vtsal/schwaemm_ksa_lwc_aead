@@ -1,0 +1,21 @@
+Sparkle: Schwaemm KSA-- Variants
+
+v1: Schwaemm256128 (AEAD using Kogge Stone Adder)
+
+    Reference Software:     
+        schwaemm256128v1
+
+    Values for generics and constants: 
+        set_selector : dummy_lwc_32
+    
+    Key Setup Time: 
+        0 clock cycles
+
+    Execution Time for Encryption:
+        Total:                      206*Na + 215*Nm + 553
+
+    Execution Time for Decryption:
+        Total:                      206*Na + 215*Nm + 554
+
+    **Please see clk_cycles.txt for further information on execution time
+

@@ -1,0 +1,55 @@
+Sparkle -- Schwaemm256128 using Kogge-Stone Adder : Clock Cycles in LWC API
+
+Na       = # blocks associated data   ( |block| = 256 bits )
+Nm       = # blocks pt/ct data        ( |block| = 256 bits )
+
+Encryption:
+
+    Load key:                   4
+    Wait npub:                  3
+    Load npub:                  8
+    Initialize state:           310
+    Load ad:                    8*Na
+    Process ad:                 198*(Na - 1) + 310
+    Load dat:                   8*Nm
+    Process dat:                198*(Nm - 1) + 310
+    Output dat:                 9*Nm
+    Output tag:                 4
+
+    Total:                      206*Na + 215*Nm + 553 
+    No AD:                      215*Nm + 442
+    No DAT:                     206*Na + 442
+    No AD & No DAT:             329
+    No new key:                 {All formulas above, subtract 7 clock cycles}
+    
+    **Note, for a data input in which the last block is not a full block
+    (Length is less than 256 bits) the total number of clock cycles will 
+    decrease because fewer clock cycles are required for the output of 
+    the last block.
+
+Decryption:
+
+    Load key:                   4
+    Wait npub:                  3
+    Load npub:                  8
+    Initialize state:           310
+    Load ad:                    8*Na
+    Process ad:                 198*(Na - 1) + 310
+    Load dat:                   8*Nm
+    Process dat:                198*(Nm - 1) + 310
+    Output dat:                 9*Nm
+    Load tag:                   4
+    Output tag valid:           1
+    
+    Total:                      206*Na + 215*Nm + 554
+    No AD:                      215*Nm + 442
+    No DAT:                     206*Na + 442
+    No AD & No DAT:             330
+    No new key:                 {All formulas above, subtract 7 clock cycles}
+    
+    **Note, for a data input in which the last block is not a full block
+    (Length is less than 256 bits) the total number of clock cycles will 
+    decrease because fewer clock cycles are required for the output of 
+    the last block.
+
+    
